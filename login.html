@@ -2,21 +2,25 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Login </title>
+  <title>Login Sekolah</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f4f7;
+      background-image: url('background.jpg'); /* Ganti dengan nama file atau URL gambar */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
     }
     .login-box {
-      background: white;
+      background: rgba(255, 255, 255, 0.9); /* transparansi agar background terlihat */
       padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
       width: 300px;
     }
     .login-box h2 {
@@ -59,13 +63,11 @@
       const pass = document.getElementById('password').value;
       const message = document.getElementById('message');
 
-      // Simulasi login (username: admin, password: 12345)
       if (user === 'admin' && pass === '12345') {
         message.style.color = 'green';
         message.textContent = 'Login berhasil!';
-        // Redirect atau lanjut ke halaman dashboard
         setTimeout(() => {
-          window.location.href = 'dashboard.html'; // Buat file dashboard.html jika ingin lanjut
+          window.location.href = 'dashboard.html';
         }, 1000);
       } else {
         message.textContent = 'Username atau password salah.';
