@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Pengumuman | SMK NU Ma’arif Kudus</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  background:#f6faf8;
+  color:#1f2937;
+}
+
+/* ===== NAVBAR ===== */
+header{
+  background:#fff;
+  padding:16px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.logo{
+  font-weight:700;
+}
+.logo span{
+  display:block;
+  font-size:13px;
+  color:#6b7280;
+}
+
+nav a{
+  margin:0 14px;
+  text-decoration:none;
+  color:#374151;
+  font-weight:500;
+}
+
+.user{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* ===== PAGE HEADER ===== */
+.page-header{
+  margin:30px 40px;
+  padding:32px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 12px 28px rgba(0,0,0,.08);
+}
+
+.page-header h1{
+  font-size:28px;
+}
+.breadcrumb{
+  font-size:13px;
+  color:#6b7280;
+  margin-top:6px;
+}
+
+/* ===== SEARCH ===== */
+.search-area{
+  margin:20px 40px;
+  display:flex;
+  gap:14px;
+}
+
+.search-box{
+  flex:1;
+  background:#fff;
+  padding:14px 18px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.search-box input{
+  border:none;
+  outline:none;
+  width:100%;
+  font-size:14px;
+}
+
+.btn-search{
+  background:#60a5fa;
+  color:#fff;
+  border:none;
+  padding:14px 22px;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* ===== FILTER ===== */
+.filter{
+  margin:10px 40px;
+}
+.filter button{
+  background:#6bb7e6;
+  color:#fff;
+  border:none;
+  padding:12px 26px;
+  border-radius:14px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* ===== LIST ===== */
+.list{
+  margin:30px 40px 60px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+.item{
+  background:#fff;
+  padding:18px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  box-shadow:0 10px 26px rgba(0,0,0,.1);
+}
+
+.icon{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  flex-shrink:0;
+}
+
+.ppdb{background:#60a5fa}
+.libur{background:#f87171}
+.ujian{background:#34d399}
+.event{background:#fbbf24}
+
+.info h4{
+  font-size:15px;
+  margin-bottom:4px;
+}
+.info small{
+  color:#6b7280;
+}
+
+.date{
+  margin-left:auto;
+  font-size:13px;
+  color:#6b7280;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .list{grid-template-columns:1fr}
+  .search-area{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    SMK NU Ma’arif Kudus
+    <span>Informasi Sekolah</span>
+  </div>
+
+  <nav>
+    <a href="#">Beranda</a>
+    <a href="#">Profil Sekolah</a>
+    <a href="#">Pengumuman</a>
+    <a href="#">Event</a>
+    <a href="#">Ekstra Kulikuler</a>
+  </nav>
+
+  <div class="user">
+    Halo, labib!
+    <i class="fa-solid fa-envelope"></i>
+  </div>
+</header>
+
+<section class="page-header">
+  <h1>Pengumuman</h1>
+  <div class="breadcrumb">Beranda &gt; Pengumuman</div>
+</section>
+
+<section class="search-area">
+  <div class="search-box">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" id="search" placeholder="Cari pengumuman ...">
+  </div>
+  <button class="btn-search">Cari &gt;</button>
+</section>
+
+<section class="filter">
+  <button data-filter="all">Semua</button>
+  <button data-filter="ppdb">PPDB</button>
+  <button data-filter="libur">Libur</button>
+  <button data-filter="ujian">Ujian</button>
+  <button data-filter="event">Event</button>
+</section>
+
+<section class="list">
+
+  <div class="item" data-kategori="ppdb">
+    <div class="icon ppdb"><i class="fa-solid fa-bullhorn"></i></div>
+    <div class="info">
+      <h4>Penerimaan Siswa Baru Tahun Ajaran 2026/2027</h4>
+      <small>Siswa bisa membagikan informasi PPDB</small>
+    </div>
+    <div class="date">1 Januari 2026</div>
+  </div>
+
+  <div class="item" data-kategori="event">
+    <div class="icon event"><i class="fa-solid fa-people-group"></i></div>
+    <div class="info">
+      <h4>Pelaksanaan Lomba 17 Agustus 2026</h4>
+      <small>Lomba dilaksanakan tanggal 20 Agustus 2026</small>
+    </div>
+    <div class="date">20 Agustus 2026</div>
+  </div>
+
+  <div class="item" data-kategori="libur">
+    <div class="icon libur"><i class="fa-solid fa-bullhorn"></i></div>
+    <div class="info">
+      <h4>Pengumuman Libur Hari Raya Idul Fitri</h4>
+      <small>Libur 15 Februari s/d 15 Maret</small>
+    </div>
+    <div class="date">15 Februari 2026</div>
+  </div>
+
+  <div class="item" data-kategori="ujian">
+    <div class="icon ujian"><i class="fa-solid fa-file-lines"></i></div>
+    <div class="info">
+      <h4>Pelaksanaan Ujian Akhir Semester</h4>
+      <small>Ujian dilaksanakan 20 September 2026</small>
+    </div>
+    <div class="date">20 Sep 2026</div>
+  </div>
+
+</section>
+
+<script>
+const buttons = document.querySelectorAll('.filter button');
+const items = document.querySelectorAll('.item');
+const search = document.getElementById('search');
+
+buttons.forEach(btn=>{
+  btn.onclick = ()=>{
+    const filter = btn.dataset.filter;
+    items.forEach(item=>{
+      item.style.display =
+        filter === 'all' || item.dataset.kategori === filter
+        ? 'flex' : 'none';
+    });
+  }
+});
+
+search.addEventListener('keyup',()=>{
+  const value = search.value.toLowerCase();
+  items.forEach(item=>{
+    item.style.display = item.innerText.toLowerCase().includes(value)
+      ? 'flex' : 'none';
+  });
+});
+</script>
+
+
+</body>
+</html>

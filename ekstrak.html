@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Ekstrakurikuler | SMK NU Ma'arif Kudus</title>
+  <link rel="stylesheet" href="ekstrakurikuler.css">
+<style>
+  body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background: #f6f8fb;
+}
+
+.navbar {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.05);
+}
+
+.navbar nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.navbar nav .active {
+  font-weight: bold;
+}
+
+.page-header {
+  background: #fff;
+  margin: 30px;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin: 0 30px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 3px 10px rgba(0,0,0,.1);
+}
+
+.search-box button {
+  padding: 14px 25px;
+  border: none;
+  border-radius: 10px;
+  background: #4aa3df;
+  color: white;
+}
+
+.intro {
+  margin: 30px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 25px;
+  margin: 30px;
+}
+
+.card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 12px;
+  background: #cce7ff;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.tag.blue { background: #d5f2ff; }
+.tag.yellow { background: #fff1c1; }
+</style>
+</head>
+<body>
+
+
+<header class="navbar">
+  <div class="logo">
+    <strong>SMK NU Ma'arif Kudus</strong>
+    <span>Informasi Sekolah</span>
+  </div>
+  <nav>
+    <a href="beranda.html">Beranda</a>
+    <a href="profil.html">Profil Sekolah</a>
+    <a href="pengumuman.html">Pengumuman</a>
+    <a href="eventsekolah.html">Event</a>
+    <a class="ekstrak.html" href="ekstrak.html">Ekstra Kulikuler</a>
+  </nav>
+</header>
+
+<section class="page-header">
+  <h1>Ekstra Kulikuler</h1>
+  <p>Beranda › EkstraKulikuler</p>
+</section>
+
+<section class="search-box">
+  <input type="text" placeholder="Cari ekstrakulikuler ...">
+  <button>Cari</button>
+</section>
+
+<section class="intro">
+  <h2>Kegiatan Ekstrakulikuler</h2>
+  <p>
+    SMK NU Ma’arif menyediakan berbagai kegiatan ekstrakulikuler
+    yang dapat diikuti oleh siswa untuk mengembangkan bakat, minat,
+    serta keterampilan mereka.
+  </p>
+</section>
+
+<section class="card-grid">
+  <div class="card">
+    <img src="img/pramuka.png">
+    <span class="tag">Pramuka</span>
+    <h3>Pramuka</h3>
+    <p>Kegiatan kepramukaan yang mendidik kedisiplinan dan kepemimpinan.</p>
+    <small>22 Juni 2026</small>
+  </div>
+
+  <div class="card">
+    <img src="img/paskibra.png">
+    <span class="tag blue">Paskibra</span>
+    <h3>Paskibra</h3>
+    <p>Melatih disiplin, tanggung jawab dan cinta tanah air.</p>
+    <small>23 Juni 2026</small>
+  </div>
+
+  <div class="card">
+    <img src="img/basket.png">
+    <span class="tag">Basket Club</span>
+    <h3>Basket</h3>
+    <p>Ekstrakurikuler olahraga basket bagi siswa.</p>
+    <small>24 Juni 2026</small>
+  </div>
+
+  <div class="card">
+    <img src="img/futsal.png">
+    <span class="tag blue">Futsal</span>
+    <h3>Futsal</h3>
+    <p>Klub futsal untuk siswa yang hobi olahraga.</p>
+    <small>10 Agustus 2026</small>
+  </div>
+
+  <div class="card">
+    <img src="img/silat.png">
+    <span class="tag blue">Pencak Silat</span>
+    <h3>Pencak Silat</h3>
+    <p>Seni bela diri dan self-defense.</p>
+    <small>11 Agustus 2026</small>
+  </div>
+
+  <div class="card">
+    <img src="img/koor.png">
+    <span class="tag yellow">Testor</span>
+    <h3>Paduan Suara</h3>
+    <p>Melatih vokal dan kekompakan tim.</p>
+    <small>12 Agustus 2026</small>
+  </div>
+
+  <div class="card">
+    <img src="img/futsal.png">
+    <span class="tag yellow">Testor</span>
+    <h3>Futsal</h3>
+    <p>Melatih kebugaran dan kekompakan tim.</p>
+    <small>12 Agustus 2026</small>
+  </div>
+</section>
+
+</body>
+</html>
