@@ -1,207 +1,170 @@
+<?php
+session_start();
+$koneksi = mysqli_connect("localhost","root","","db_sekolah");
+
+$message = "";
+
+if(isset($_POST['register'])){
+    $username = $_POST['username'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    mysqli_query($koneksi,"INSERT INTO users VALUES('','$username','$password')");
+    $message = "<span style='color:green;'>Akun berhasil dibuat!</span>";
+}
+
+if(isset($_POST['login'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $data = mysqli_query($koneksi,"SELECT * FROM users WHERE username='$username'");
+    $user = mysqli_fetch_assoc($data);
+
+    if($user && password_verify($password,$user['password'])){
+        $_SESSION['username'] = $user['username'];
+        header("Location: dashboard.php");
+        exit;
+    } else {
+        $message = "<span style='color:red;'>Username atau Password salah!</span>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Sistem Informasi Sekolah</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-image: url('background.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+<meta charset="UTF-8">
+<title>Sistem Informasi Sekolah</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    .logo-box {
-      width: 120px;
-      height: 120px;
-      background-color: rgba(255, 255, 255, 0.142);
-      border-radius: 7px;
-      margin-bottom: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.251);
-    }
-
-    /* Tambahan script untuk logo agar pas di box */
-    .logo-box img {
-  width: 110%;
-  height: 120%;
-  object-fit: contain; /* menjaga proporsi logo agar tidak gepeng */
-  border-radius: 8px;  /* opsional, biar ikut sudut kotak */
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+.logo-box {
+  width: 120px;
+  height: 120px;
+  background-color: rgba(255,255,255,0.15);
+  border-radius: 7px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .welcome-text {
-      color: white;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-      text-align: center;
-      margin-bottom: 20px;
-    }
+.logo-box img {
+  width: 110%;
+  height: 120%;
+  object-fit: contain;
+}
 
-    .welcome-text h1 {
-      font-size: 32px;
-      margin: 0;
-    }
+.welcome-text {
+  color: white;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    .welcome-text h2 {
-      font-size: 24px;
-      margin: 5px 0 20px 0;
-    }
+.login-box {
+  background: rgba(255,255,255,0.95);
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  width: 450px;
+  max-width: 90%;
+  text-align: center;
+}
 
-    .login-box {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 40px 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      width: 450px;
-      max-width: 90%;
-      text-align: center;
-    }
+.input-group {
+  margin-bottom: 20px;
+}
 
-    .input-group {
-      position: relative;
-      margin-bottom: 25px;
-    }
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
 
-    .input-group i.fa-user,
-    .input-group i.fa-lock {
-      position: absolute;
-      top: 50%;
-      left: 12px;
-      transform: translateY(-50%);
-      color: #888;
-      font-size: 16px;
-    }
+.login-btn {
+  width: 60%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px auto;
+  display: block;
+  transition: 0.3s;
+}
 
-    .input-group input {
-      width: 100%;
-      padding: 12px 40px 12px 40px;
-      padding-right: 45px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
+.login-btn:hover {
+  background-color: #0056b3;
+}
 
-    .toggle-password {
-      position: absolute;
-      top: 50%;
-      right: 12px;
-      transform: translateY(-50%);
-      color: #888;
-      cursor: pointer;
-      font-size: 16px;
-    }
+.login-btn:active {
+  transform: scale(0.95);
+}
 
-    .login-btn {
-      width: 60%;
-      padding: 12px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      text-transform: uppercase;
-      margin: 0 auto;
-      display: block;
-    }
+.register-btn {
+  background-color: #28a745;
+}
 
-    .login-btn:hover {
-      background-color: #0056b3;
-    }
+.register-btn:hover {
+  background-color: #1e7e34;
+}
 
-    #message {
-      margin-top: 15px;
-      font-size: 14px;
-      color: red;
-    }
-
-    @media (max-width: 600px) {
-      .login-box {
-        width: 90%;
-        padding: 25px 20px;
-      }
-
-      .welcome-text h1 {
-        font-size: 24px;
-      }
-
-      .welcome-text h2 {
-        font-size: 18px;
-      }
-
-      .login-btn {
-        width: 100%;
-      }
-    }
-  </style>
+.message {
+  margin-top: 15px;
+  font-size: 14px;
+}
+</style>
 </head>
+
 <body>
-  <div class="logo-box">
-    <img src="logosekolah.png" alt="Logo Sekolah">
+
+<div class="logo-box">
+  <img src="logosekolah.png">
+</div>
+
+<div class="welcome-text">
+  <h1>Sistem Informasi Sekolah</h1>
+  <h2>Selamat Datang!</h2>
+</div>
+
+<div class="login-box">
+
+<form method="POST">
+  <div class="input-group">
+    <input type="text" name="username" placeholder="Username" required>
   </div>
 
-  <div class="welcome-text">
-    <h1>Sistem Informasi Sekolah</h1>
-    <h2>Selamat Datang!</h2>
+  <div class="input-group">
+    <input type="password" name="password" placeholder="Password" required>
   </div>
 
-  <div class="login-box">
-    <div class="input-group">
-      <i class="fas fa-user"></i>
-      <input type="text" id="username" placeholder="Username">
-    </div>
-    <div class="input-group">
-      <i class="fas fa-lock"></i>
-      <input type="password" id="password" placeholder="Password">
-      <i class="fas fa-eye toggle-password" id="togglePassword"></i>
-    </div>
+  <button class="login-btn" type="submit" name="login">LOGIN</button>
+  <button class="login-btn register-btn" type="submit" name="register">+ TAMBAH AKUN</button>
+</form>
 
-    <button class="login-btn" onclick="login()">LOGIN</button>
-    <p id="message"></p>
-  </div>
+<div class="message">
+  <?= $message ?>
+</div>
 
-  <script>
-    function login() {
-      const user = document.getElementById('username').value;
-      const pass = document.getElementById('password').value;
-      const message = document.getElementById('message');
+</div>
 
-      if (user === 'admin' && pass === '12345') {
-        message.style.color = 'green';
-        message.textContent = 'Login berhasil!';
-        setTimeout(() => {
-          window.location.href = 'dashboard.html';
-        }, 1000);
-      } else {
-        message.textContent = 'Username atau password salah.';
-      }
-    }
-
-    const togglePassword = document.getElementById('togglePassword');
-    const passwordInput = document.getElementById('password');
-
-    togglePassword.addEventListener('click', function () {
-      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-      passwordInput.setAttribute('type', type);
-      this.classList.toggle('fa-eye-slash');
-    });
-  </script>
 </body>
 </html>
-
-
-
-
-
