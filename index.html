@@ -1,33 +1,4 @@
-<?php
-session_start();
-$koneksi = mysqli_connect("localhost","root","","db_sekolah");
 
-$message = "";
-
-if(isset($_POST['register'])){
-    $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-    mysqli_query($koneksi,"INSERT INTO users VALUES('','$username','$password')");
-    $message = "<span style='color:green;'>Akun berhasil dibuat!</span>";
-}
-
-if(isset($_POST['login'])){
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    $data = mysqli_query($koneksi,"SELECT * FROM users WHERE username='$username'");
-    $user = mysqli_fetch_assoc($data);
-
-    if($user && password_verify($password,$user['password'])){
-        $_SESSION['username'] = $user['username'];
-        header("Location: dashboard.php");
-        exit;
-    } else {
-        $message = "<span style='color:red;'>Username atau Password salah!</span>";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -168,3 +139,4 @@ body {
 
 </body>
 </html>
+
